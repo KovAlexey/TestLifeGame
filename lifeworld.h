@@ -1,10 +1,12 @@
 #ifndef LIFEWORLD_H
 #define LIFEWORLD_H
 #include <QGuiApplication>
+#include <QObject>
 #include <QDebug>
 
-class LifeWorld
+class LifeWorld : public QObject
 {
+    Q_OBJECT
 public:
     enum CellStatus{Death, Live};
 
@@ -13,6 +15,12 @@ public:
 
     void set(int _posX, int _posY, CellStatus status);
     void step();
+
+    int WorldX() const;
+    int WorldY() const;
+
+signals:
+    void worldReady();
 
 private:
     int m_WorldX, m_WorldY;

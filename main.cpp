@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "lifeworld.h"
+#include "lifeworldquickitem.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    qmlRegisterType<LifeWorldQuickItem>("MyItems", 1, 0, "LifeWorldRenderItem");
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
@@ -25,8 +29,8 @@ int main(int argc, char *argv[])
         }
 
     world.step();
-    //world.step();
-    //world.step();
+    world.step();
+    world.step();
 
     return app.exec();
 }

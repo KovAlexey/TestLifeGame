@@ -36,6 +36,17 @@ void LifeWorld::step()
     }
     memcpy(m_World, tempWorld, size);
     free(tempWorld);
+    emit worldReady();
+}
+
+int LifeWorld::WorldX() const
+{
+    return m_WorldX;
+}
+
+int LifeWorld::WorldY() const
+{
+    return m_WorldY;
 }
 
 void LifeWorld::updateState(int _posX, int _posY, int** p_world)

@@ -2,6 +2,8 @@
 #define LIFEWORLDQUICKITEM_H
 
 #include <QQuickItem>
+#include "gridpaintnode.h"
+#include "lifeworld.h"
 
 class LifeWorldQuickItem : public QQuickItem
 {
@@ -9,8 +11,15 @@ class LifeWorldQuickItem : public QQuickItem
 public:
     LifeWorldQuickItem();
 
-signals:
+protected:
+    QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);
 
+private:
+    LifeWorld* m_world;
+    class GraphNode:public QSGNode{
+    public:
+        GridPaintNode* gridNode;
+    };
 };
 
 #endif // LIFEWORLDQUICKITEM_H
